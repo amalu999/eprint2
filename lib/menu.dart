@@ -4,6 +4,7 @@ import 'contribute.dart';
 import 'history.dart';
 import 'page.dart';
 import 'feedback.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MenuBar extends StatefulWidget {
   @override
@@ -11,6 +12,7 @@ class MenuBar extends StatefulWidget {
 }
 
 class _MenuBarState extends State<MenuBar> {
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -18,8 +20,7 @@ class _MenuBarState extends State<MenuBar> {
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             UserAccountsDrawerHeader(
-              accountName: Text('Devika T V'),
-              accountEmail: Text('devikathazhath@gmail.com'),
+              accountEmail: Text('devuu'),
               currentAccountPicture: CircleAvatar(
                 child: Text('D'),
                 backgroundColor: Colors.white,
@@ -78,3 +79,6 @@ class _MenuBarState extends State<MenuBar> {
 
   }
 }
+
+
+

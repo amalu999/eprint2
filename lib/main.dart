@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 void main(){
@@ -12,7 +13,7 @@ void main(){
       MaterialApp(
         home: Scaffold(
           appBar: AppBar(title: Text(' Login'),),
-          resizeToAvoidBottomPadding: false,
+          resizeToAvoidBottomInset: false,
           body: SafeArea(
             child: MyApp(),
           ),
@@ -35,6 +36,13 @@ class _MyAppState extends State<MyApp> {
 
   bool processing = false;
 
+  void setValues(email) async {
+    SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
+    // set values
+
+    sharedPrefs.setString('email', email);
+    print('Values Set in Shared Prefs!!');
+  }
   @override
   void initState() {
     // TODO: implement initState
@@ -53,12 +61,14 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return Container(
         padding: EdgeInsets.all(10.0),
-        child: Column(
-          children: <Widget>[
-            Icon(Icons.account_circle,size: 200,color: Colors.blue,),
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Icon(Icons.account_circle,size: 200,color: Colors.blue,),
 
-            boxUi(),
-          ],
+              boxUi(),
+            ],
+          ),
         )
     );
   }
@@ -106,6 +116,8 @@ class _MyAppState extends State<MyApp> {
     }
     setState(() {
       processing = false;
+      //////////////
+
     });
   }
 
@@ -138,6 +150,7 @@ class _MyAppState extends State<MyApp> {
 
     setState(() {
       processing = false;
+      setValues(emailctrl.text);
     });
   }
 
@@ -185,33 +198,37 @@ class _MyAppState extends State<MyApp> {
   }
 
   Widget signInUi(){
-    return Column(
-      children: <Widget>[
+    return SingleChildScrollView(
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
 
-        TextField(
-          controller: emailctrl,
-          decoration: InputDecoration(prefixIcon: Icon(Icons.account_box,),
-              hintText: 'email'),
+            TextField(
+              controller: emailctrl,
+              decoration: InputDecoration(prefixIcon: Icon(Icons.account_box,),
+                  hintText: 'email'),
+            ),
+
+
+            TextField(
+              controller: passctrl,
+              decoration: InputDecoration(prefixIcon: Icon(Icons.lock,),
+                  hintText: 'pass'),
+            ),
+
+            SizedBox(height: 10.0,),
+
+            MaterialButton(
+                onPressed:() => userSignIn(),
+                child: processing == false ? Text('Sign In',
+                  style: GoogleFonts.varelaRound(fontSize: 18.0,
+                      color: Colors.blue),) : CircularProgressIndicator(backgroundColor: Colors.red,)
+
+            ),
+
+          ],
         ),
-
-
-        TextField(
-          controller: passctrl,
-          decoration: InputDecoration(prefixIcon: Icon(Icons.lock,),
-              hintText: 'pass'),
-        ),
-
-        SizedBox(height: 10.0,),
-
-        MaterialButton(
-            onPressed:() => userSignIn(),
-            child: processing == false ? Text('Sign In',
-              style: GoogleFonts.varelaRound(fontSize: 18.0,
-                  color: Colors.blue),) : CircularProgressIndicator(backgroundColor: Colors.red,)
-
-        ),
-
-      ],
+      ),
     );
   }
 
@@ -264,4 +281,3 @@ class _MyAppState extends State<MyApp> {
 // now we will setup php and database
 //thank you
 }
-
