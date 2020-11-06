@@ -62,7 +62,7 @@ class _FrontpageState extends State<Frontpage> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+
         appBar: AppBar(
           titleSpacing: 20.0,
           actions : <Widget>[
@@ -93,7 +93,7 @@ class _FrontpageState extends State<Frontpage> {
             )
           ],
           title: cussearchbar,
-          backgroundColor: Colors.blue,
+
         ),
         drawer: MenuBar(
 

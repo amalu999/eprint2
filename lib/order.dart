@@ -6,11 +6,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:demo_login/orderConfirmation.dart';
 
+import 'CoderConfirmation.dart';
+
 class OrderDetails extends StatefulWidget {
 final String nameOfBook;
 final String author;
 final String subject;
-OrderDetails({Key key, this.nameOfBook, this.author, this.subject});
+OrderDetails({Key key, this.subject, this.nameOfBook, this.author});
 
   @override
   _OrderDetailsState createState() => _OrderDetailsState();
@@ -70,9 +72,9 @@ class _OrderDetailsState extends State<OrderDetails> {
     }
   }
 
-  void confirmOrder(sub,book,auth){
+  void confirmOrder(){
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => ConfirmOrder(subject: sub,nameOfBook: book,author: auth,),
+      builder: (context) => ConfirmOrder(),
     ),);
   }
 
@@ -81,7 +83,7 @@ class _OrderDetailsState extends State<OrderDetails> {
       child: Text("OK"),
       onPressed:  () {
         setValues(copyctrl);
-        confirmOrder(subject,nameOfBook,author);
+        confirmOrder();
       },
     );
 
@@ -116,7 +118,9 @@ class _OrderDetailsState extends State<OrderDetails> {
     // set up the buttons
     Widget cancelButton = FlatButton(
       child: Text("YES"),
-      onPressed:  () {},
+      onPressed:  () {
+        ConfirmcOrder();
+      },
     );
     Widget continueButton = FlatButton(
         child: Text("NO"),
@@ -141,13 +145,6 @@ class _OrderDetailsState extends State<OrderDetails> {
       },
     );
   }
-
-
-
-
-
-
-
   @override
   void initState1() {
     super.initState();
@@ -156,9 +153,8 @@ class _OrderDetailsState extends State<OrderDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
       ),
-        backgroundColor: Colors.white,
+
         body:Container(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

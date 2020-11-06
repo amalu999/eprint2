@@ -18,6 +18,10 @@ class _ContributeState extends State<Contribute> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
           title: Text("Contribute"),
         ),
         drawer: MenuBar(),

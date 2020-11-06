@@ -11,6 +11,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main(){
   runApp(
       MaterialApp(
+        theme: ThemeData.dark(
+
+        ),
         home: Scaffold(
           appBar: AppBar(title: Text(' Login'),),
           resizeToAvoidBottomInset: false,

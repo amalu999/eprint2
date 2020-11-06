@@ -6,12 +6,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:demo_login/order.dart';
 
 class ConfirmOrder extends StatefulWidget {
-  final String nameOfBook;
-  final String author;
-  final String subject;
-
-  const ConfirmOrder({Key key, this.nameOfBook, this.author, this.subject}) : super(key: key);
-
   @override
   _ConfirmOrderState createState() => _ConfirmOrderState();
 }
@@ -92,9 +86,14 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
   }
   Widget build(BuildContext context) {
 
-    return Scaffold(
-
-      backgroundColor: Colors.white,
+    return
+      Scaffold(
+        appBar: AppBar(
+        leading: IconButton(
+        icon: Icon(Icons.arrow_back, color: Colors.white),
+    onPressed: () => Navigator.of(context).pop(),
+        ),
+        ),
       body:Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

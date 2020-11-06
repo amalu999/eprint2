@@ -7,6 +7,10 @@ import 'feedback.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MenuBar extends StatefulWidget {
+  final String name;
+  final String email;
+
+  const MenuBar({Key key, this.name, this.email}) : super(key: key);
   @override
   _MenuBarState createState() => _MenuBarState();
 }
@@ -20,10 +24,11 @@ class _MenuBarState extends State<MenuBar> {
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             UserAccountsDrawerHeader(
-              accountEmail: Text('devuu'),
+              accountName: Text("devika"),
+              accountEmail: Text("devikathazhath@gmail.com"),
               currentAccountPicture: CircleAvatar(
-                child: Text('D'),
-                backgroundColor: Colors.white,
+                child: Icon(Icons.account_circle),
+                backgroundColor: Colors.black26,
               ),
             ),
             ListTile(

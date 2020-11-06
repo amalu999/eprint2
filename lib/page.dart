@@ -10,6 +10,10 @@ class _PageNewState extends State<PageNew> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+        icon: Icon(Icons.arrow_back, color: Colors.white),
+    onPressed: () => Navigator.of(context).pop(),
+        ),
         title: Text("order placed"),
       ),
       drawer: MenuBar(),
